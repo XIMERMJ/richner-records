@@ -1,1 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Richner Records</title>
+
+  <meta name="description" content="Richner Records — an independent music, art and culture publication. Published by Richner Records Publications.">
+  <meta name="theme-color" content="#000000">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #050505;
+      color: #f4f4f4;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 34px 24px;
+      position: relative;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-top: 1px solid #707070;
+      padding-top: 12px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #a5a5a5;
+    }
+
+    .brand-small {
+      color: #ffffff;
+    }
+
+    .issue {
+      text-align: right;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0;
+    }
+
+    .kicker {
+      font-size: 10px;
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(56px, 12vw, 190px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.78;
+      letter-spacing: -0.075em;
+      max-width: 1500px;
+      position: relative;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .records {
+      color: transparent;
+      -webkit-text-stroke: 1px #ffffff;
+    }
+
+    .statement {
+      width: min(670px, 100%);
+      margin-top: 62px;
+      border-left: 1px solid #777;
+      padding-left: 18px;
+    }
+
+    .statement .big {
+      font-size: clamp(18px, 2.2vw, 30px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .statement .small {
+      max-width: 510px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #8b8b8b;
+    }
+
+    .status {
+      margin-top: 55px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 30px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #686868;
+    }
+
+    .status strong {
+      color: #ffffff;
+      font-weight: normal;
+    }
+
+    .bottom {
+      border-bottom: 1px solid #707070;
+      padding-bottom: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      font-size: 9px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+    }
+
+    .bottom-right {
+      text-align: right;
+    }
+
+    .glitch {
+      animation: microGlitch 12s infinite;
+    }
+
+    @keyframes microGlitch {
+      0%, 92%, 100% {
+        transform: translate(0);
+        filter: none;
+      }
+
+      93% {
+        transform: translate(-2px, 0);
+        filter: contrast(150%);
+      }
+
+      94% {
+        transform: translate(3px, 0);
+      }
+
+      95% {
+        transform: translate(-1px, 1px);
+      }
+
+      96% {
+        transform: translate(0);
+        filter: none;
+      }
+    }
+
+    .scan {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      opacity: 0.07;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 3px,
+          rgba(255,255,255,0.08) 4px
+        );
+      z-index: 10;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 20px;
+      }
+
+      .top {
+        font-size: 8px;
+      }
+
+      .hero {
+        padding: 90px 0 70px;
+      }
+
+      h1 {
+        line-height: 0.86;
+      }
+
+      .statement {
+        margin-top: 48px;
+      }
+
+      .bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-right {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scan"></div>
+
+  <main class="page">
+
+    <header class="top">
+      <div class="brand-small">
+        Richner Records Publications
+      </div>
+
+      <div class="issue">
+        Issue 001<br>
+        In Development
+      </div>
+    </header>
+
+
+    <section class="hero">
+
+      <div class="kicker">
+        Independent Music / Art / Culture
+      </div>
+
+      <h1 class="glitch">
+        <span>Richner</span>
+        <span class="records">Records</span>
+      </h1>
+
+      <div class="statement">
+        <div class="big">
+          Independently owned.<br>
+          Editorially controlled.<br>
+          On the way.
+        </div>
+
+        <div class="small">
+          The first issue of Richner Records is currently in development.
+          Editorial conversations are underway. Invitations are out.
+          We are building this deliberately.
+        </div>
+      </div>
+
+      <div class="status">
+        <div>Publishing <strong>Quarterly</strong></div>
+        <div>Issue <strong>001</strong></div>
+        <div>Status <strong>Private Development</strong></div>
+        <div>Est. <strong>2026</strong></div>
+      </div>
+
+    </section>
+
+
+    <footer class="bottom">
+      <div>
+        Richner Records<br>
+        A publication of Richner Records Publications
+      </div>
+
+      <div class="bottom-right">
+        Music / Interviews / Photography / Visual Culture<br>
+        © 2026 Richner Records LLC
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
