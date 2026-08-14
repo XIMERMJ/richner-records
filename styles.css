@@ -1,0 +1,238 @@
+:root {
+  --ink: #0a0a0a;
+  --paper: #f2f0e8;
+  --acid: #cbff00;
+  --yellow: #ffd900;
+  --red: #f23b2d;
+  --grey: #bdbcb4;
+  --page-pad: clamp(1.25rem, 6vw, 5rem);
+  --max-width: 100rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+}
+
+.section-pad,
+.masthead {
+  padding-inline: var(--page-pad);
+}
+
+.masthead {
+  min-height: min(38rem, 70vh);
+  padding-top: clamp(2rem, 6vw, 5rem);
+  padding-bottom: clamp(2.5rem, 7vw, 6rem);
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  align-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-code,
+.eyebrow,
+.footer-label,
+.legal {
+  font: 700 0.7rem/1.2 "Courier New", monospace;
+  letter-spacing: 0.02em;
+}
+
+.file-code {
+  justify-self: end;
+  margin: 0;
+}
+
+.brand {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  font-size: clamp(4rem, 13vw, 11rem);
+  font-weight: 700;
+  line-height: 0.79;
+  letter-spacing: -0.075em;
+  transform: rotate(-1deg);
+}
+
+.acid-text {
+  color: var(--acid);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 3vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag,
+.section-label {
+  width: max-content;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.tag-red { background: var(--red); color: white; }
+.tag-paper { background: var(--paper); color: var(--ink); }
+.tag-acid { background: var(--acid); color: var(--ink); }
+
+.manifesto {
+  padding-top: clamp(4rem, 10vw, 9rem);
+}
+
+.manifesto h2 {
+  margin: 0;
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  border-bottom: clamp(0.3rem, 0.7vw, 0.7rem) solid var(--ink);
+  font-size: clamp(3.2rem, 9vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  font-weight: 500;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 9vw, 9rem);
+  padding-top: clamp(3rem, 7vw, 6rem);
+  padding-bottom: clamp(4rem, 9vw, 8rem);
+}
+
+.about-grid p:not(.section-label) {
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  line-height: 1.48;
+}
+
+.section-label {
+  margin: 0;
+  font-weight: 700;
+}
+
+.label-black { background: var(--ink); color: var(--paper); }
+.label-acid { background: var(--acid); color: var(--ink); }
+
+.issue {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  background: var(--yellow);
+}
+
+.eyebrow {
+  margin: 0 0 clamp(2rem, 5vw, 4rem);
+}
+
+.issue-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 0.55fr;
+  align-items: end;
+  gap: clamp(2rem, 8vw, 8rem);
+}
+
+.issue h2 {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 0.2em;
+  margin: 0;
+  font-size: clamp(3.2rem, 8vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+.issue h2 span:last-child {
+  grid-column: 1 / -1;
+}
+
+.red-text { color: var(--red); }
+
+.issue-grid > p {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  line-height: 1.45;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: 2rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.footer-label {
+  color: var(--grey);
+}
+
+.footer-value {
+  margin: 1rem 0 0;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+
+.legal {
+  grid-column: 1 / -1;
+  margin: 3rem 0 0;
+  color: var(--grey);
+}
+
+@media (max-width: 720px) {
+  .masthead {
+    min-height: 34rem;
+  }
+
+  .file-code {
+    justify-self: start;
+  }
+
+  .about-grid,
+  .issue-grid,
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
+  .issue h2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .issue-grid > p {
+    max-width: 32rem;
+  }
+
+  .legal {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tag,
+  .section-label {
+    transition: transform 160ms ease;
+  }
+
+  .tag:hover,
+  .section-label:hover {
+    transform: translateY(-0.2rem) rotate(-1deg);
+  }
+}
