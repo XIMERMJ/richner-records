@@ -4,21 +4,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>We've Forgotten How to Experience</title>
+  <title>We've Forgotten How to Experience — Richner Records</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #f4f4f1;
-      color: #111;
+      background: #ffffff;
+      color: #000000;
       font-family: Georgia, "Times New Roman", serif;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* =========================
+       INK SPILL BACKGROUND
+       ========================= */
+
+    .ink {
+      position: fixed;
+      background: #000;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* BIG INK BLEED — TOP RIGHT */
+    .ink-one {
+      width: 310px;
+      height: 260px;
+      top: -120px;
+      right: -90px;
+      border-radius:
+        48% 52% 31% 69%
+        / 62% 30% 70% 38%;
+      transform: rotate(19deg);
+    }
+
+    /* LEFT EDGE INK */
+    .ink-two {
+      width: 170px;
+      height: 380px;
+      top: 42%;
+      left: -135px;
+      border-radius:
+        36% 64% 57% 43%
+        / 62% 42% 58% 38%;
+      transform: rotate(-17deg);
+    }
+
+    /* BOTTOM RIGHT BLEED */
+    .ink-three {
+      width: 350px;
+      height: 240px;
+      bottom: -150px;
+      right: -170px;
+      border-radius:
+        71% 29% 61% 39%
+        / 39% 67% 33% 61%;
+      transform: rotate(-13deg);
+    }
+
+    /* SMALL SPLATTERS */
+
+    .splat {
+      position: fixed;
+      background: #000;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .splat-1 {
+      width: 13px;
+      height: 13px;
+      top: 18%;
+      right: 8%;
+    }
+
+    .splat-2 {
+      width: 7px;
+      height: 7px;
+      top: 21%;
+      right: 11%;
+    }
+
+    .splat-3 {
+      width: 22px;
+      height: 16px;
+      top: 24%;
+      right: 6%;
+      transform: rotate(25deg);
+    }
+
+    .splat-4 {
+      width: 9px;
+      height: 9px;
+      top: 57%;
+      left: 5%;
+    }
+
+    .splat-5 {
+      width: 17px;
+      height: 11px;
+      top: 60%;
+      left: 8%;
+      transform: rotate(-30deg);
+    }
+
+    .splat-6 {
+      width: 5px;
+      height: 5px;
+      top: 63%;
+      left: 6%;
+    }
+
+    /* =========================
+       ARTICLE
+       ========================= */
+
     article {
+      position: relative;
+      z-index: 2;
       max-width: 760px;
       margin: 100px auto;
       padding: 0 30px;
+      background: #fff;
     }
 
     .category {
@@ -40,8 +154,8 @@
     .subtitle {
       font-size: 20px;
       line-height: 1.5;
-      color: #555;
-      border-bottom: 1px solid #aaa;
+      color: #333;
+      border-bottom: 1px solid #000;
       padding-bottom: 30px;
       margin-bottom: 40px;
     }
@@ -49,11 +163,136 @@
     p {
       font-size: 20px;
       line-height: 1.8;
+      margin: 0 0 28px;
+    }
+
+    /* LARGE EDITORIAL QUOTE */
+
+    .callout {
+      position: relative;
+      margin: 65px -35px;
+      padding: 45px 35px;
+      border-top: 4px solid #000;
+      border-bottom: 4px solid #000;
+      font-size: 31px;
+      line-height: 1.35;
+      font-style: italic;
+    }
+
+    /* LITTLE FAKE INK SMEAR */
+
+    .smear {
+      width: 125px;
+      height: 8px;
+      background: #000;
+      margin: 45px 0;
+      transform: rotate(-2deg);
+      position: relative;
+    }
+
+    .smear::after {
+      content: "";
+      position: absolute;
+      width: 75px;
+      height: 3px;
+      background: #000;
+      left: 35px;
+      top: 12px;
+      transform: rotate(3deg);
+    }
+
+    /* =========================
+       JOIN THE CONVERSATION
+       ========================= */
+
+    .submission {
+      margin-top: 70px;
+      padding: 45px 0;
+      border-top: 7px solid #000;
+      border-bottom: 1px solid #000;
+    }
+
+    .submission h2 {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin: 0 0 30px;
+    }
+
+    .email-link {
+      color: #000;
+      font-weight: bold;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 25px;
+      border-top: 1px solid #000;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      article {
+        margin: 55px auto;
+        padding: 0 22px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .callout {
+        margin: 50px -10px;
+        padding: 35px 10px;
+        font-size: 25px;
+      }
+
+      .ink-one {
+        width: 180px;
+        height: 160px;
+      }
+
+      .ink-two {
+        width: 120px;
+      }
+
+      .ink-three {
+        width: 230px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- INK SPILLS -->
+  <div class="ink ink-one"></div>
+  <div class="ink ink-two"></div>
+  <div class="ink ink-three"></div>
+
+  <!-- INK DROPS -->
+  <div class="splat splat-1"></div>
+  <div class="splat splat-2"></div>
+  <div class="splat splat-3"></div>
+  <div class="splat splat-4"></div>
+  <div class="splat splat-5"></div>
+  <div class="splat splat-6"></div>
 
   <article>
 
@@ -62,7 +301,7 @@
     </div>
 
     <h1>
-      We've Grown So Used to Consuming That We've Forgotten How to Experience.
+      We've Grown So Used to Consuming That We've Forgotten How to Experience
     </h1>
 
     <div class="subtitle">
@@ -70,30 +309,129 @@
       to finish, replace, and move on from?
     </div>
 
+    <div class="smear"></div>
+
     <p>
       We've grown so used to consuming that we've forgotten how to experience.
-      Music arrives at midnight, and before we've even had the chance to live
+      Music arrives at midnight, and before we've even had a chance to live
       with it, we're already asking an artist what comes next. Albums become
       release weeks. Songs become fifteen-second moments. Art that may have
       taken months or years to create can enter our lives and disappear from
-      our attention in a matter of days. This isn't an accusation against the
-      listener — I'm a listener too. It's a question about all of us. At what
-      point did experiencing something become less important than simply
-      consuming the next thing?
+      our attention within days. This isn't an accusation against the listener
+      — I'm a listener too. It's a question for all of us. At what point did
+      experiencing something become less important than simply consuming the
+      next thing?
     </p>
-<div>
-  <p>I also know that my experience is only one experience.</p>
-  <p>I haven’t spent thirty years working in music. I can’t tell you firsthand what it felt like to release a record in 1996, or what it meant to discover an artist before an algorithm could decide what should come next. I can remember what consuming music felt like from the other side — as a listener — and I can speak to what I’ve experienced since becoming an artist myself. But there’s an enormous history before me, and an entire generation coming after me that may experience music completely differently.</p>
-  <p>That’s why I don’t want this to be a lecture about how things <em>used to be better.</em> I don’t even know that they were.</p>
-  <p>I want to hear from the person who remembers waiting outside a record store on release day. I want to hear from the artist who watched the industry move from physical sales to downloads to streaming. I want to hear from someone my age who remembers convincing their parents to take them to Blockbuster on a Friday night, when choosing what to watch actually felt like part of the experience. And I want to hear from the eighteen-year-old who has never known a world without Spotify, TikTok, infinite scrolling and practically every piece of recorded music available within seconds.</p>
-  <p>Maybe we’re experiencing the same problem differently. Maybe some people don’t think it’s a problem at all.</p>
-  <p>That’s interesting to me, too.</p>
-  <p>Because this isn’t supposed to be an argument against technology, streaming, younger generations or the people listening. I’m participating in the exact same culture I’m writing about. I’m an artist who releases music onto these platforms, and I’m also the person scrolling through them.</p>
-  <p>So I want other voices in this conversation.</p>
-  <p>If you’ve watched the way we consume music, art, entertainment or culture change — whether you’ve been around this industry for forty years or four months — write to me. Tell me what you miss. Tell me what you don’t miss. Tell me why you think I’m completely wrong. Tell me what became better. Tell me what we’ve lost.</p>
-  <p>I’m all ears.</p>
-  <p>Because maybe the only way to understand how quickly we’re consuming everything is to stop for a minute and actually listen to each other.</p>
-</div>
+
+    <p>
+      I also know that my experience is only one experience.
+    </p>
+
+    <p>
+      I haven't spent thirty years working in music. I can't tell you firsthand
+      what it felt like to release a record in 1996 or what it meant to discover
+      an artist before an algorithm could decide what came next. I can remember
+      what consuming music felt like from the other side — as a listener — and
+      I can speak to what I've experienced since becoming an artist myself.
+      But there's an enormous history before me and an entire generation coming
+      after me that may experience music completely differently.
+    </p>
+
+    <p>
+      That's why I don't want this to be a lecture about how things
+      <em>used to be better.</em> I don't even know that they were.
+    </p>
+
+    <p>
+      I want to hear from the person who remembers waiting outside a record
+      store on release day. I want to hear from the artist who watched the
+      industry move from physical sales to downloads to streaming. I want to
+      hear from someone my age who remembers convincing their parents to take
+      them to Blockbuster on a Friday night, when choosing what to watch
+      actually felt like part of the experience.
+    </p>
+
+    <p>
+      And I want to hear from the eighteen-year-old who has never known a world
+      without Spotify, TikTok, infinite scrolling, and practically every piece
+      of recorded music available within seconds.
+    </p>
+
+    <div class="callout">
+      Maybe we're experiencing the same problem differently.
+      Maybe some people don't think it's a problem at all.
+    </div>
+
+    <p>
+      That's interesting to me, too.
+    </p>
+
+    <p>
+      This isn't supposed to be an argument against technology, streaming,
+      younger generations, or the people listening. I'm participating in the
+      exact same culture I'm writing about. I'm an artist who releases music
+      on these platforms, and I'm also the person scrolling through them.
+    </p>
+
+    <p>
+      So I want other voices in this conversation.
+    </p>
+
+    <p>
+      If you've watched the way we consume music, art, entertainment, or
+      culture change — whether you've been part of this industry for forty
+      years or four months — write to me.
+    </p>
+
+    <p>
+      Tell me what you miss. Tell me what you don't miss. Tell me why you
+      think I'm completely wrong. Tell me what got better. Tell me what
+      we've lost.
+    </p>
+
+    <div class="smear"></div>
+
+    <p>
+      I'm all ears.
+    </p>
+
+    <p>
+      Because maybe the only way to understand how quickly we're consuming
+      everything is to stop for a minute and actually listen to one another.
+    </p>
+
+    <section class="submission">
+
+      <h2>Join the Conversation</h2>
+
+      <p>
+        Richner Records is looking for perspectives from listeners, artists,
+        producers, industry professionals, and anyone who has watched the way
+        we experience culture change.
+      </p>
+
+      <p>
+        You don't need to agree with me. In fact, I'd rather hear what I
+        haven't considered.
+      </p>
+
+      <p>
+        If you have a story, memory, opinion, disagreement, or perspective
+        you'd like to share, reach out:
+      </p>
+
+      <p>
+        <a class="email-link" href="mailto:jmr7100@icloud.com">
+          jmr7100@icloud.com
+        </a>
+      </p>
+
+    </section>
+
+    <footer>
+      Richner Records — Independent Music, Art & Culture
+    </footer>
+
   </article>
 
 </body>
