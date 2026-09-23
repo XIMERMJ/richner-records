@@ -1,92 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Richner Records — Scheduled Maintenance</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Richner Records is currently undergoing scheduled maintenance."
-  >
+    content="Richner Records — independent music, art, culture, and releases."
+  />
+  <title>Richner Records — Afterburn</title>
 
   <style>
+    :root {
+      --bg: #0b0b0b;
+      --paper: #f4efe7;
+      --soft: #d8d2ca;
+      --accent: #ff7a2f;
+      --accent2: #d9b8ff;
+      --line: rgba(255,255,255,.16);
+      --muted: rgba(255,255,255,.62);
+      --max: 1200px;
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #050505;
-      color: #f5f5f5;
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(217,184,255,.08), transparent 24%),
+        radial-gradient(circle at 80% 20%, rgba(255,122,47,.08), transparent 22%),
+        var(--bg);
+      color: var(--paper);
       font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11,11,11,.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 30px;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    .maintenance {
-      width: 100%;
-      max-width: 850px;
-      text-align: center;
-    }
-
-    .label {
-      font-size: 11px;
-      letter-spacing: 0.35em;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: #777;
-      margin-bottom: 30px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--paper);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      letter-spacing: -.08em;
+      transform: rotate(45deg);
+    }
+
+    .mark span {
+      transform: rotate(-45deg);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--paper);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 70px;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      color: var(--accent2);
+      margin-bottom: 18px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(42px, 9vw, 100px);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
+      font-size: clamp(64px, 10vw, 150px);
+      line-height: .84;
       text-transform: uppercase;
+      letter-spacing: -.055em;
+      font-weight: 800;
+      position: relative;
+      max-width: 900px;
     }
 
-    .status {
-      margin: 35px auto 0;
-      max-width: 600px;
-      font-family: "Courier New", monospace;
-      font-size: 14px;
-      line-height: 1.8;
-      color: #aaa;
-    }
-
-    .line {
-      width: 60px;
-      height: 1px;
-      background: #555;
-      margin: 40px auto;
-    }
-
-    .footer {
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #555;
-    }
-
-    .blink {
+    .glitch-word {
       display: inline-block;
-      animation: blink 1.1s step-end infinite;
+      position: relative;
     }
 
-    @keyframes blink {
-      50% {
-        opacity: 0;
+    .glitch-word::before,
+    .glitch-word::after {
+      content: "RICHNER";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .3;
+    }
+
+    .glitch-word::before {
+      transform: translate(3px, 0);
+      color: var(--accent);
+      clip-path: inset(12% 0 62% 0);
+    }
+
+    .glitch-word::after {
+      transform: translate(-3px, 0);
+      color: var(--accent2);
+      clip-path: inset(62% 0 12% 0);
+    }
+
+    .hero-copy {
+      margin-top: 28px;
+      max-width: 660px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--soft);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid var(--paper);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 11px;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      background: var(--paper);
+      color: var(--bg);
+    }
+
+    .btn.alt {
+      border-color: var(--line);
+      color: var(--muted);
+    }
+
+    .btn.alt:hover {
+      background: transparent;
+      color: var(--paper);
+      border-color: var(--paper);
+    }
+
+    /* ART DECO PANEL */
+
+    .deco-panel {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,122,47,.08), transparent 38%),
+        linear-gradient(315deg, rgba(217,184,255,.08), transparent 38%);
+    }
+
+    .deco-panel::before,
+    .deco-panel::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .deco-panel::after {
+      inset: 16%;
+    }
+
+    .sun {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.7);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .sun::before,
+    .sun::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 1px;
+      background: rgba(255,255,255,.22);
+    }
+
+    .sun::after {
+      transform: rotate(90deg);
+    }
+
+    .sun span {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: .2em;
+      line-height: 1.7;
+      color: var(--soft);
+    }
+
+    /* ANNOUNCEMENT */
+
+    .announcement {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .announce-grid {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .section-number {
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .announcement h2 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 100px);
+      line-height: .95;
+      text-transform: uppercase;
+      letter-spacing: -.045em;
+    }
+
+    .release-name {
+      color: var(--accent);
+    }
+
+    .release-meta {
+      margin-top: 26px;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .statement {
+      margin-top: 36px;
+      max-width: 760px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--soft);
+    }
+
+    .date-card {
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .date-card strong {
+      font-size: clamp(28px, 4vw, 56px);
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+    }
+
+    .date-card span {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* TICKER */
+
+    .ticker {
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--bg);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: move 24s linear infinite;
+    }
+
+    .ticker-item {
+      padding: 14px 30px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    @keyframes move {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ABOUT */
+
+    .about {
+      padding: 100px 0 120px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+    }
+
+    .about h3 {
+      margin: 0;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+    }
+
+    .about p {
+      margin: 20px 0 0;
+      line-height: 1.8;
+      color: var(--soft);
+      max-width: 620px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .mini-card {
+      background: var(--bg);
+      min-height: 160px;
+      padding: 24px;
+    }
+
+    .mini-card small {
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-top: 16px;
+      font-size: 22px;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0 50px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .announce-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .deco-panel {
+        min-height: 420px;
+      }
+
+      .hero-grid {
+        gap: 45px;
+      }
+
+      .announce-grid,
+      .about-grid {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrap {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+
+      .announcement h2 {
+        font-size: 48px;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -94,29 +494,167 @@
 
 <body>
 
-  <main class="maintenance">
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="brand">
+        <div class="mark"><span>RR</span></div>
+        <span>Richner Records</span>
+      </a>
 
-    <div class="label">Richner Records</div>
+      <nav>
+        <a href="#release">Release</a>
+        <a href="#about">About</a>
+        <a href="https://www.ximermj.com" target="_blank">XIMERMJ</a>
+      </nav>
+    </div>
+  </header>
 
-    <h1>
-      Scheduled<br>
-      Maintenance.
-    </h1>
+  <main>
 
-    <div class="line"></div>
+    <section class="hero">
+      <div class="wrap hero-grid">
 
-    <div class="status">
-      Richner Records is currently undergoing scheduled maintenance.<br>
-      The site will return shortly.<span class="blink">_</span>
+        <div>
+          <div class="eyebrow">Independent music / art / culture</div>
+
+          <h1>
+            <span class="glitch-word">Richner</span><br>
+            Records
+          </h1>
+
+          <p class="hero-copy">
+            Independent sound, visual culture, and artist development
+            presented through a desert-modern lens.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#release">Current Release</a>
+            <a class="btn alt" href="https://www.ximermj.com" target="_blank">Visit XIMERMJ</a>
+          </div>
+        </div>
+
+        <div class="deco-panel">
+          <div class="sun">
+            <span>
+              Palm Desert<br>
+              Modernism<br>
+              ×<br>
+              Digital Noise
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        <div class="ticker-item">XIMERMJ — AFTERBURN — OCTOBER 2, 2026</div>
+        <div class="ticker-item">RICHNER RECORDS REMAINS INDEPENDENT</div>
+        <div class="ticker-item">NEW ERA / NEW RELEASE / NO COMMENT</div>
+        <div class="ticker-item">XIMERMJ — AFTERBURN — OCTOBER 2, 2026</div>
+        <div class="ticker-item">RICHNER RECORDS REMAINS INDEPENDENT</div>
+        <div class="ticker-item">NEW ERA / NEW RELEASE / NO COMMENT</div>
+      </div>
     </div>
 
-    <div class="line"></div>
+    <section class="announcement" id="release">
+      <div class="wrap announce-grid">
 
-    <div class="footer">
-      Music · Art · Allegations.
-    </div>
+        <div class="section-number">
+          01 / Release Notice
+        </div>
+
+        <div>
+          <h2>
+            In honor of<br>
+            our client<br>
+            <span class="release-name">XIMERMJ</span>
+          </h2>
+
+          <div class="release-meta">
+            <div>Forthcoming single</div>
+            <div>Title: Afterburn</div>
+            <div>Released by Richner Records LLC</div>
+          </div>
+
+          <p class="statement">
+            Richner Records marks the forthcoming release of
+            <strong>“Afterburn”</strong>, the new single from XIMERMJ.
+            The release continues the artist’s current visual and sonic era,
+            bringing together electronic production, desert modernism,
+            and a deliberately distorted visual language.
+          </p>
+
+          <div class="date-card">
+            <strong>October 2, 2026</strong>
+            <span>Official release date</span>
+          </div>
+
+          <div class="hero-actions">
+            <a
+              class="btn"
+              href="https://music.apple.com/us/album/afterburn-single/6814523743"
+              target="_blank"
+            >
+              View on Apple Music
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+
+        <div>
+          <div class="eyebrow">Richner Records LLC</div>
+
+          <h3>Independent by design.</h3>
+
+          <p>
+            Richner Records is an independent music company focused on
+            electronic music, visual identity, releases, catalog development,
+            and artist-led creative direction.
+          </p>
+        </div>
+
+        <div class="mini-grid">
+
+          <div class="mini-card">
+            <small>Current Artist</small>
+            <strong>XIMERMJ</strong>
+          </div>
+
+          <div class="mini-card">
+            <small>Next Release</small>
+            <strong>Afterburn</strong>
+          </div>
+
+          <div class="mini-card">
+            <small>Release Date</small>
+            <strong>10.02.26</strong>
+          </div>
+
+          <div class="mini-card">
+            <small>Status</small>
+            <strong>Independent</strong>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
 
   </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© 2026 Richner Records LLC</span>
+      <span>Music. Art. Culture.</span>
+    </div>
+  </footer>
 
 </body>
 </html>
