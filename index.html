@@ -12,9 +12,9 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
-      padding: 0;
       width: 100%;
       height: 100%;
       background: #000;
@@ -26,184 +26,89 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    .player {
-      width: min(720px, 88vw);
+    .container {
+      width: min(760px, 86vw);
     }
 
-    .track {
+    .track-title {
       font-size: 18px;
-      letter-spacing: 3px;
       font-weight: 400;
-      margin-bottom: 5px;
+      letter-spacing: 4px;
+      margin-bottom: 7px;
     }
 
     .artist {
       font-size: 10px;
       letter-spacing: 2px;
       color: #777;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .soundcloud {
+      width: 100%;
+      height: 166px;
+      border: 0;
+      display: block;
     }
 
-    button {
-      width: 42px;
-      height: 42px;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      background: transparent;
-      color: #fff;
-      cursor: pointer;
-      font-size: 11px;
-      padding: 0 0 0 2px;
-      flex-shrink: 0;
-      transition: .2s ease;
-    }
-
-    button:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .line {
-      flex: 1;
-      height: 1px;
-      background: #292929;
-      position: relative;
-    }
-
-    .progress {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 1px;
-      width: 0%;
-      background: #fff;
-    }
-
-    .time {
-      font-size: 9px;
-      letter-spacing: 1px;
-      color: #777;
-      min-width: 34px;
-      text-align: right;
-    }
-
-    .bottom {
+    .footer {
       display: flex;
       justify-content: space-between;
-      margin-top: 18px;
+      margin-top: 16px;
+
       font-size: 8px;
       letter-spacing: 2px;
       color: #333;
+      text-transform: uppercase;
     }
 
-    iframe {
-      display: none;
+    @media (max-width: 600px) {
+
+      .container {
+        width: 88vw;
+      }
+
+      .track-title {
+        font-size: 15px;
+        letter-spacing: 3px;
+      }
+
+      .soundcloud {
+        height: 166px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main class="player">
+  <main class="container">
 
-    <div class="track">CORRESPONDED</div>
-    <div class="artist">XIMERMJ</div>
-
-    <div class="controls">
-
-      <button id="play" aria-label="Play">
-        ▶
-      </button>
-
-      <div class="line">
-        <div class="progress" id="progress"></div>
-      </div>
-
-      <div class="time" id="time">
-        00:00
-      </div>
-
+    <div class="track-title">
+      CORRESPONDED
     </div>
 
-    <div class="bottom">
+    <div class="artist">
+      XIMERMJ
+    </div>
+
+    <iframe
+      class="soundcloud"
+      scrolling="no"
+      frameborder="no"
+      allow="autoplay; encrypted-media"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2430347670&color=%230066cc&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+    </iframe>
+
+    <div class="footer">
       <span>SOUNDCLOUD</span>
       <span>2430347670</span>
     </div>
 
-    <iframe
-      id="soundcloud"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2430347670&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
-    </iframe>
-
   </main>
-
-  <script src="https://w.soundcloud.com/player/api.js"></script>
-
-  <script>
-    const iframe = document.getElementById("soundcloud");
-    const widget = SC.Widget(iframe);
-
-    const button = document.getElementById("play");
-    const progress = document.getElementById("progress");
-    const time = document.getElementById("time");
-
-    button.addEventListener("click", function () {
-
-      widget.isPaused(function (paused) {
-
-        if (paused) {
-          widget.play();
-        } else {
-          widget.pause();
-        }
-
-      });
-
-    });
-
-    widget.bind(SC.Widget.Events.PLAY, function () {
-      button.textContent = "Ⅱ";
-    });
-
-    widget.bind(SC.Widget.Events.PAUSE, function () {
-      button.textContent = "▶";
-    });
-
-    widget.bind(SC.Widget.Events.FINISH, function () {
-      button.textContent = "▶";
-      progress.style.width = "0%";
-      time.textContent = "00:00";
-    });
-
-    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function (event) {
-
-      progress.style.width =
-        (event.relativePosition * 100) + "%";
-
-      const seconds =
-        Math.floor(event.currentPosition / 1000);
-
-      const minutes =
-        Math.floor(seconds / 60);
-
-      const remaining =
-        seconds % 60;
-
-      time.textContent =
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(remaining).padStart(2, "0");
-
-    });
-  </script>
 
 </body>
 </html>
